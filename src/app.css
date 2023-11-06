@@ -1,3 +1,12 @@
-.app{
-    padding: 25px;
+body{
+    background-color: #202529;
+    color: #A1B4C4;
+    box-sizing: border-box;
+    max-width: 100%;
+    font-family: "poppins", sans-serif;
+    margin: 0 auto;
+}
+
+main{
+    padding: 10vh;
 } 

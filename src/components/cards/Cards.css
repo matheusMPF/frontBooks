@@ -1,42 +1,42 @@
 .card-listing{
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 25px;
     justify-content: center;
-    color: #A1B4C4;
+    list-style: none;
 }
 
-ul li .card-info{
+.card-info{
     display: flex;
     justify-content: space-between;
-    border: 1px solid #1BC6B4;
+    border: 2px solid #32383D;
     border-radius: 10px;
 }
 
-ul li img{
-    width: 130px;
-
+.img-card{
+    width: 110px;
+    padding: 20px;
 }
 
-ul li .card-info span{
+.span-title-card{
     padding: 5px;
     text-transform: uppercase;
     font-size: 17px;
 }
 
-ul li.card{
+.card{
     background-color: #4C555C;
-    width: 200px;
+    width: 160px;
     padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     border-radius: 12px;
     transition: 0.2s ease-in-out;
 }
 
-ul li.card:hover{
+.card:hover{
     transform: scale(1.05);
     cursor: pointer;
     background-color: #1BC6B4;
@@ -44,7 +44,8 @@ ul li.card:hover{
     font-weight: 500;
 }
 
-ul li .description{
+.description{
+    margin: auto 10px;
     max-height: 140px;
     font-size: 13px;
 }
