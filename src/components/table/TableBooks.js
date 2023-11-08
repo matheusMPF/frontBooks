@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import http from '../../Service/http';
+import "../../Styles/Tables.css"
 
 const TableBooks = () => {
     const [dados, setDados] = useState([]);
 
-    async function listBooks(){
-        return http.get('Book/listAllBooks')
-        .then(resp => {
-            return resp.data;
-        }).catch(erro => {
-            console.log(erro)
-        })
+    async function listBooks() {
+        try {
+            const response = await http.get('Book/listAllBooks');
+            setDados(response.data);
+        } catch (error) {
+            console.log('Erro ao buscar os livros:', error);
+        }
     }
 
     useEffect(() => {
-        listBooks()
-    },[]);
+        listBooks();
+    }, []);
 
     return (
         <div>
@@ -34,9 +35,10 @@ const TableBooks = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {(
+                    {dados.length > 0 ? (
                         dados.map(dado => (
                             <tr key={dado.isbn}>
+                                <td>{dado.isbn}</td>
                                 <td>{dado.title}</td>
                                 <td>{dado.author}</td>
                                 <td>{dado.edition}</td>
@@ -50,9 +52,17 @@ const TableBooks = () => {
                                 <td><button>Editar</button></td>
                             </tr>
                         ))
+                    ) : (
+                        <tr>
+                            <td colSpan="8">Não existem dados</td>
+                        </tr>
                     )}
                 </tbody>
             </table>
+            <div className="table-buttons">
+                <button className="reload-button">Recarregar</button>
+                <button className="add-button">Adicionar</button>
+            </div>
         </div>
     );
 }
