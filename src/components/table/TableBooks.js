@@ -1,38 +1,60 @@
-const TableBooks = () => {
-    return (
-        <table striped bordered hover>
-            <thead>
-                <tr>
-                    <th>ISBN</th>
-                    <th>Título</th>
-                    <th>Autor</th>
-                    <th>Editora</th>
-                    <th>Edição</th>
-                    <th>Categorias</th>
-                    <th>Páginas</th>
-                    <th>Preço</th>
-                    <th>Destaque</th>
-                    <th>Ativar/Desativar</th>
-                    <th>Editar</th>
-                </tr>
-            </thead>
+import React, { useEffect, useState } from 'react';
+import http from '../../Service/http';
 
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Minha vida fora de série</td>
-                    <td>Paula Pimenta</td>
-                    <td>Gutenberg</td>
-                    <td>Edição 10</td>
-                    <td>Ficção</td>
-                    <td>408</td>
-                    <td>44,90</td>
-                    <td><button>True or false</button></td>
-                    <td><button>True or false</button></td>
-                    <td><button>Editar</button></td>
-                </tr>
-            </tbody>
-        </table>
-    )
+const TableBooks = () => {
+    const [dados, setDados] = useState([]);
+
+    async function listBooks(){
+        return http.get('Book/listAllBooks')
+        .then(resp => {
+            return resp.data;
+        }).catch(erro => {
+            console.log(erro)
+        })
+    }
+
+    useEffect(() => {
+        listBooks()
+    },[]);
+
+    return (
+        <div>
+            <h2>Lista de Livros</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ISBN</th>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th>Edição</th>
+                        <th>Preço</th>
+                        <th>Destaques</th>
+                        <th>Ativar</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {(
+                        dados.map(dado => (
+                            <tr key={dado.isbn}>
+                                <td>{dado.title}</td>
+                                <td>{dado.author}</td>
+                                <td>{dado.edition}</td>
+                                <td>{dado.price}</td>
+                                <td>
+                                    {dado.highlights ? 'True' : 'False'}
+                                </td>
+                                <td>
+                                    {dado.active ? 'True' : 'False'}
+                                </td>
+                                <td><button>Editar</button></td>
+                            </tr>
+                        ))
+                    )}
+                </tbody>
+            </table>
+        </div>
+    );
 }
+
 export default TableBooks;
