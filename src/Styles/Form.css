@@ -1,0 +1,46 @@
+.formAdmin{
+   
+    /* display: flex; */
+    /* flex-direction: column; */
+    padding: 20px;
+    border-radius: 12px;
+    gap: 20px; /* Adiciona um espaço em todos os elemntos dentro da tag "pai" */
+    position: fixed;
+    /* left: 50vh; */
+    transition: left 1s linear;
+    /* z-index: 4; */
+}
+
+.formAdmin input{
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+    margin-left: 5px;
+    outline-color: #113bc5; /*Linha que fica em volta de um input ao clicar */
+}
+
+.mascara-form{
+    visibility: hidden; /* Faz a mascara sumir */
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    background: linear-gradient(109deg, rgba(10, 12, 16, 0.99) 15%,
+     rgba(10, 12, 16, 0.7) 50%, 
+     rgba(10, 12, 16, 0.99) 85%);
+}
+
+.btn-add {
+    height: 30px;
+    width: 100px;
+    background: #c51111;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin-top: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
