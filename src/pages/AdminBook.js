@@ -6,15 +6,29 @@ import "../Styles/Form.css"
 const AdminBook = () => {
 
     const [dados, setDados] = useState([]);
-    const [formData, setFormData] = useState({
+    const [formData] = useState({
         isbn: '',
         title: '',
         author: '',
         edition: '',
         price: '',
-        // highlights: false,
-        // active: false,
-    });
+        highlights: '',
+        active: '',
+    })
+
+    async function addBook() {
+        try {
+            http.post('/Book/registerBook', data)
+                .then(response => {
+                    console.log(response.data);
+                })
+        }
+        catch (error) {
+            console.log(error);
+        };
+    }
+
+
 
     // Listar os livros
     async function listBooks() {
@@ -26,29 +40,10 @@ const AdminBook = () => {
         }
     }
 
-    //Cadastrar livros
-    async function addBook() {
-        try {
-            await http.post('Book/registerBook', formData);
-
-            listBooks();
-        } catch (error) {
-            console.log('Erro ao adicionar livro:', error);
-        }
-    }
-
     useEffect(() => {
         listBooks();
     }, []);
 
-    const handleInputChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setFormData({
-            ...formData,
-            [name]: type === 'checkbox' ? checked : value,
-        });
-    };
-    
     return (
         <div>
             <h2>Lista de Livros</h2>
@@ -98,16 +93,16 @@ const AdminBook = () => {
 
                 <h2>Adicionar Livro</h2>
 
-                <input placeholder='ISBN' type="text" name="isbn" value={formData.isbn} onChange={handleInputChange} />
-                <input placeholder='Título' type="text" name="title" value={formData.title} onChange={handleInputChange} />
-                <input placeholder='Autor' type="text" name="author" value={formData.author} onChange={handleInputChange} />
-                <input placeholder='Edição' type="text" name="edition" value={formData.edition} onChange={handleInputChange} />
-                <input placeholder='Preço' type="text" name="price" value={formData.price} onChange={handleInputChange} />
+                <input placeholder='ISBN' type="text" name="isbn" value={formData.isbn} />
+                <input placeholder='Título' type="text" name="title" value={formData.title} />
+                <input placeholder='Autor' type="text" name="author" value={formData.author} />
+                <input placeholder='Edição' type="text" name="edition" value={formData.edition} />
+                <input placeholder='Preço' type="text" name="price" value={formData.price} />
                 <label> Destaques
-                <input placeholder='Destaque' type="checkbox" name="highlights" checked={formData.highlights} onChange={handleInputChange} />
+                    <input placeholder='Destaque' type="checkbox" name="highlights" checked={formData.highlights} />
                 </label>
                 <label> Ativo
-                <input placeholder='Ativo' type="checkbox" name="active" checked={formData.active} onChange={handleInputChange} />
+                    <input placeholder='Ativo' type="checkbox" name="active" checked={formData.active} />
                 </label>
                 <button onClick={addBook} className='btn-add'>Adicionar</button>
             </form>
