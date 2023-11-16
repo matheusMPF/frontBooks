@@ -4,7 +4,7 @@ table {
     background: #4C555C;
     color: #fff;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.99);
     margin: 20px 0;
   }
   
@@ -20,6 +20,7 @@ table {
   }
   
   table th {
+    text-align: center;
     font-weight: bold;
     border-bottom: 2px solid #4C555C;
   }
@@ -31,35 +32,40 @@ table {
   table tbody tr:nth-child(odd) {
     background: #4C555C;
   }
-  
-  table th .buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  table th .buttons button {
-    background: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  table th .buttons .add-button {
-    background: #28A745;
-  }
-  
-  table th .buttons .button-cell {
-    padding: 0;
-  }
-  
-  table th .buttons button:hover {
-    background: #0056b3;
+
+  table tbody tr td{
+    text-align: center;
   }
   
   table tbody tr:hover {
     background: #636C73;
     color: #fff;
+  }
+
+  .btn-action-edit,
+  .btn-action-active{
+    height: 35px;
+    width: 80px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7)
+  }
+
+  .btn-action-edit{
+    background-color: #0056b3;
+  }
+
+  .btn-action-active{
+    background-color: #a10000;
+  }
+
+  .btn-action-edit:hover{
+    background-color: #00356d;
+  }
+
+  .btn-action-active:hover{
+    background-color: #4b0000;
   }
