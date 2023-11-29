@@ -4,13 +4,13 @@ import "../Styles/Tables.css"
 import "../Styles/Form.css"
 import Button from '../components/button/Button';
 import Input from '../components/input/Input';
+import {cadastroLivro, listarLivros} from '../Service/livroService';
 
 const AdminBook = () => {
 
     const [dados, setDados] = useState([]);
     const [isbn, setIsbn] = useState();
     const [title, setTitle] = useState();
-    const [author, setAuthor] = useState();
     const [edition, setEdition] = useState();
     const [price, setPrice] = useState();
 
@@ -18,27 +18,21 @@ const AdminBook = () => {
     //Cadastrar um livro
     async function addBook(event){
         event.preventDefault(); //Evita do formulário fazer submit na página
-        try{
-            await http.post('Book/registerBook', {isbn, title, author, edition, price})
-            .then(response => {
-                alert("Dados cadastrados")
-                listBooks()
-                setAuthor('')
-                setEdition('')
-                setIsbn('')
-                setPrice('')
-                setTitle('')
-            })
-        } catch(error){
-            alert("Erro ao cadastrar dados do livro", error)
+        if(await cadastroLivro(isbn, title, edition, price)){
+            alert('cadastrado com sucesso')
+            setPrice('')
+            setEdition('')
+            setIsbn('')
+            setTitle('')
         }
+        listBooks()
     }
 
     //Listar lisvros cadastrados
     async function listBooks(){
         try{
-            const response = await http.get("Book/listAllBooks")
-            setDados(response.data)
+            const dados = await listarLivros()
+            setDados(dados)
         } catch(error){
             alert("erro ao tentar buscar os livros", error)
         }
@@ -58,7 +52,6 @@ const AdminBook = () => {
     async function editar(dado){
         try{
             setIsbn(dado.isbn)
-            setAuthor(dado.author)
             setEdition(dado.edition)
             setPrice(dado.price)
             setTitle(dado.title)
@@ -84,8 +77,6 @@ const AdminBook = () => {
                     <th>Título</th>
                     <th>Edição</th>
                     <th>Preço</th>
-                    <th>Destaques</th>
-                    <th>Ativo</th>
                     <th colSpan={2}></th>
                 </thead>
                 <tbody>
@@ -96,8 +87,7 @@ const AdminBook = () => {
                                 <td>{dado.title}</td>
                                 <td>{dado.edition}</td>
                                 <td>{dado.price}</td>
-                                <td>{dado.highlights ? 'True' : 'False'}</td>
-                                <td>{dado.active ? 'True' : 'False'}</td>
+
                                 <td><Button className="btn-action-edit" onClick={() => editar(dado)} nameButton="Editar"/></td>
                                 <td><Button className="btn-action-active" onClick={() => desativar(dado)} nameButton={dado.active ? 'Desativar' : 'Ativar'}/></td>
                             </tr>

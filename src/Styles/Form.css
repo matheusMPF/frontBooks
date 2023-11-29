@@ -2,6 +2,7 @@
    
     /* display: flex; */
     /* flex-direction: column; */
+    background: transparent;
     padding: 20px;
     border-radius: 12px;
     gap: 20px; /* Adiciona um espaço em todos os elemntos dentro da tag "pai" */
@@ -35,7 +36,7 @@
 .btn-add {
     height: 30px;
     width: 100px;
-    background: #c51111;
+    background: #11c556;
     border: none;
     border-radius: 5px;
     color: white;
@@ -43,4 +44,8 @@
     cursor: pointer;
     text-transform: uppercase;
     margin-left: 5px;
+}
+
+.btn-add:hover{
+    background-color: #076b2d;
 }

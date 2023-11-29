@@ -9,7 +9,7 @@ import AdminBook from './pages/AdminBook';
 import AdminAuthor from './pages/AdminAuthor';
 import ErrorPage from './pages/ErrorPage';
 import AdminBookPublisher from './pages/AdminBookPublisher';
-import AdminCategory from './pages/AdminCategory';
+import Admin from './pages/Admin';
 
 const router = createBrowserRouter([
 
@@ -17,6 +17,11 @@ const router = createBrowserRouter([
   path: "/",
   errorElement: <ErrorPage/>,
   element: <App/>
+},
+
+{
+  path: "/admin",
+  element: <Admin/>
 },
 
 {
@@ -32,10 +37,6 @@ const router = createBrowserRouter([
   path: "/adminBookPublisher",
   element: <AdminBookPublisher/>
 },
-{
-  path: "/adminCategory",
-  element: <AdminCategory/>
-}
 
 //   {
 //     path: "/",
