@@ -8,35 +8,47 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AdminBook from './pages/AdminBook';
 import AdminAuthor from './pages/AdminAuthor';
 import ErrorPage from './pages/ErrorPage';
-import AdminBookPublisher from './pages/AdminBookPublisher';
 import Admin from './pages/Admin';
+import Home from './pages/clientPage/Home';
+import Cart from './pages/clientPage/Cart';
 
 const router = createBrowserRouter([
 
 {
   path: "/",
   errorElement: <ErrorPage/>,
-  element: <App/>
-},
+  element: <App/>,
+  children:[
 
-{
-  path: "/admin",
-  element: <Admin/>
-},
+    {
+      path: "/",
+      element: <Home/>
+    },
 
-{
-  path: "/adminBook",
-  element: <AdminBook/>
-},
+    {
+      path: "/cart",
+      element: <Cart/>
+    },
 
-{
-  path: "/adminAuthor",
-  element: <AdminAuthor/>
-},
-{
-  path: "/adminBookPublisher",
-  element: <AdminBookPublisher/>
-},
+    {
+      path: "/admin",
+      element: <Admin/>
+    },
+    
+    {
+      path: "/adminBook",
+      element: <AdminBook/>
+    },
+    
+    {
+      path: "/adminAuthor",
+      element: <AdminAuthor/>
+    },
+  ]
+}
+
+
+
 
 //   {
 //     path: "/",

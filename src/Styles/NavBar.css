@@ -1,5 +1,6 @@
 nav {
     background: #202529;
+    padding: 15px;
     display: flex;
     min-width: 100%;
     justify-content: space-between;
@@ -24,9 +25,15 @@ nav {
     border:none;
 }
 
-.logo-search{
-    padding-top: 5px;
-    padding-right: 8px;
+.search-icon{
+   padding-top: 5px; 
+   padding-right: 10px;
+}
+
+
+.area-search{
+    margin-left: 10px;
+    background-color:#A1B4C4
 }
 
 .area-logo .logo {
