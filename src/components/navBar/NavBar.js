@@ -23,7 +23,7 @@ const NavBar = () => {
             </div>
             <div className="area-search">
                 <input type="text" className="search" placeholder="Buscar..."/>
-                <FaSearch size="1.5em" className="search-icon" />
+                <FaSearch className="search-icon" />
             </div>
         </nav>
     );
