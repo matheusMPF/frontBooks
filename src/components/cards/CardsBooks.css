@@ -11,7 +11,7 @@ main{
     --bg-color: #fff;
     --main-color: #323232;
     --main-focus: #2d8cf0;
-    width: 250px;
+    width: 280px;
     height: 470px;
     background: var(--bg-color);
     border: 2px solid var(--main-color);
@@ -46,6 +46,7 @@ main{
     font-size: 14px;
     font-weight: 400;
     color: var(--font-color-sub);
+    overflow-y: scroll;
   }
   
   .card-divider {

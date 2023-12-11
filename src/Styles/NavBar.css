@@ -19,7 +19,7 @@ nav {
 
 .area-search .search{
     float:left;
-    padding: 2px;
+    padding: 5px;
     outline: none;
     background-color:transparent;
     padding-left:10px;
@@ -27,14 +27,16 @@ nav {
 }
 
 .search-icon{
+    color: black;
    padding-top: 5px; 
    padding-right: 10px;
 }
 
 
 .area-search{
-    margin-left: 10px;
-    background-color:#A1B4C4
+
+    background-color:#A1B4C4;
+    padding: 5px;
 }
 
 .area-logo .logo {
