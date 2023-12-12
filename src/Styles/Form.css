@@ -6,7 +6,6 @@
     padding: 20px;
     border-radius: 12px;
     gap: 20px; /* Adiciona um espaço em todos os elemntos dentro da tag "pai" */
-    position: fixed;
     /* left: 50vh; */
     transition: left 1s linear;
     /* z-index: 4; */

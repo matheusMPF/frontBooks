@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { CiImageOn } from "react-icons/ci";
+import { GoCheck } from "react-icons/go";
+
 
 const SingleFileUploader = (props) => {
     const [file, setFile] = useState(null);
@@ -32,7 +35,8 @@ const SingleFileUploader = (props) => {
                 {(file == null || showButton) && (
                     <div>
                         <label htmlFor="file" className="sr-only">
-                            {textFile}
+                            {textFile}<CiImageOn />
+
                         </label>
                         <input
                             id="file"
@@ -45,16 +49,14 @@ const SingleFileUploader = (props) => {
             {sendImage && (
                 <div>
                     <br />
-                    <br />
                     <span>Imagem salva com sucesso...</span>
-                    <br />
                     <br />
                 </div>
             )}
             {file != null && !showButton && (
                 <div>
-                    <button onClick={(e) => handleUpload(e)}>
-                        Enviar imagem
+                    <button className="enviar-imagem" onClick={(e) => handleUpload(e)}>
+                        Enviar <GoCheck />
                     </button>
                 </div>
             )}

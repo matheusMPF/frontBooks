@@ -82,14 +82,27 @@ const AdminBook = () => {
     }, []);
 
     return (
+
         <div className='Container'>
+            
+            <form onSubmit={(event)=>addBook(event)} className='formAdmin'>
+                <h2>Adicionar livro</h2>
+
+                <Input placeholder="Isbn" type="text" value={isbn} name="isbn" onChange={(event)=>setIsbn(event.target.value)} />
+                <Input placeholder="Título" type="text" value={title} name="title" onChange={(event)=>setTitle(event.target.value)} />
+                <Input placeholder="Descrição" type="text" value={edition} name="edition" onChange={(event)=>setEdition(event.target.value)} />
+                <Input placeholder="Preço" type="number" value={price} name="price" onChange={(event)=>setPrice(event.target.value)} />
+                <SingleFileUploader setStates={setFile}/>
+                <Button className="btn-add" nameButton="Adicionar"/>
+            </form>
+            
             <h2>Lista de livros</h2>
 
             <table className='tableAdmin'>
                 <thead>
                     <th>ISBN</th>
                     <th>Título</th>
-                    <th>Edição</th>
+                    <th>Descrição</th>
                     <th>Preço</th>
                     <th>Imagem</th>
                     <th colSpan={2}></th>
@@ -102,7 +115,7 @@ const AdminBook = () => {
                                 <td>{dado.title}</td>
                                 <td>{dado.edition}</td>
                                 <td>{dado.price}</td>
-                                <td><img src={"http://localhost:8080"+dado.image}></img></td>
+                                <td><img src={"http://localhost:8080"+dado.image} width="50px"></img></td>
 
                                 <td><Button className="btn-action-edit" onClick={() => editar(dado)} nameButton="Editar"/></td>
                                 <td><Button className="btn-action-active" onClick={() => desativar(dado)} nameButton={dado.active ? 'Desativar' : 'Ativar'}/></td>
@@ -115,16 +128,6 @@ const AdminBook = () => {
                 </tbody>
             </table>
 
-            <form onSubmit={(event)=>addBook(event)} className='formAdmin'>
-                <h2>Adicionar livro</h2>
-
-                <Input placeholder="Isbn" type="text" value={isbn} name="isbn" onChange={(event)=>setIsbn(event.target.value)} />
-                <Input placeholder="Título" type="text" value={title} name="title" onChange={(event)=>setTitle(event.target.value)} />
-                <Input placeholder="Edição" type="text" value={edition} name="edition" onChange={(event)=>setEdition(event.target.value)} />
-                <Input placeholder="Preço" type="number" value={price} name="price" onChange={(event)=>setPrice(event.target.value)} />
-                <SingleFileUploader setStates={setFile}/>
-                <Button className="btn-add" nameButton="Adicionar"/>
-            </form>
         </div>
     );
 }
