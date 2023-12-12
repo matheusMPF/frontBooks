@@ -1,7 +1,12 @@
 import http from "./http";
 
-export const cadastroLivro = async (isbn, title, author, edition, price) =>{
-    return await http.post('Book/registerBook', {isbn, title, author, edition, price})
+export const cadastroLivro = async (book) =>{
+ 
+    return await http.post('Book/registerBook', book, {
+        header: {
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data'
+      }})
     .then(resp => {
         return true;
     }).catch(err=>{

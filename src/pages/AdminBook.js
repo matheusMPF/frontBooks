@@ -5,6 +5,7 @@ import "../Styles/Form.css"
 import Button from '../components/button/Button';
 import Input from '../components/input/Input';
 import {cadastroLivro, listarLivros} from '../Service/livroService';
+import SingleFileUploader from '../components/fileUpload/FileUpload';
 
 const AdminBook = () => {
 
@@ -13,12 +14,25 @@ const AdminBook = () => {
     const [title, setTitle] = useState();
     const [edition, setEdition] = useState();
     const [price, setPrice] = useState();
+    const [file, setFile] = useState(null);
 
 
     //Cadastrar um livro
     async function addBook(event){
+        const book = {
+            isbn, 
+            title, 
+            edition, 
+            price
+        };
+      
+        const formData = new FormData();
+        formData.append('book', new Blob([JSON.stringify(book)], {
+            type: "application/json"
+        }));
+        formData.append('foto', file);
         event.preventDefault(); //Evita do formulário fazer submit na página
-        if(await cadastroLivro(isbn, title, edition, price)){
+        if(await cadastroLivro(formData)){
             alert('cadastrado com sucesso')
             setPrice('')
             setEdition('')
@@ -77,6 +91,7 @@ const AdminBook = () => {
                     <th>Título</th>
                     <th>Edição</th>
                     <th>Preço</th>
+                    <th>Imagem</th>
                     <th colSpan={2}></th>
                 </thead>
                 <tbody>
@@ -87,6 +102,7 @@ const AdminBook = () => {
                                 <td>{dado.title}</td>
                                 <td>{dado.edition}</td>
                                 <td>{dado.price}</td>
+                                <td><img src={"http://localhost:8080"+dado.image}></img></td>
 
                                 <td><Button className="btn-action-edit" onClick={() => editar(dado)} nameButton="Editar"/></td>
                                 <td><Button className="btn-action-active" onClick={() => desativar(dado)} nameButton={dado.active ? 'Desativar' : 'Ativar'}/></td>
@@ -106,7 +122,7 @@ const AdminBook = () => {
                 <Input placeholder="Título" type="text" value={title} name="title" onChange={(event)=>setTitle(event.target.value)} />
                 <Input placeholder="Edição" type="text" value={edition} name="edition" onChange={(event)=>setEdition(event.target.value)} />
                 <Input placeholder="Preço" type="number" value={price} name="price" onChange={(event)=>setPrice(event.target.value)} />
-
+                <SingleFileUploader setStates={setFile}/>
                 <Button className="btn-add" nameButton="Adicionar"/>
             </form>
         </div>

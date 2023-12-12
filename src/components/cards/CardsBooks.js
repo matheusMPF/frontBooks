@@ -1,10 +1,10 @@
+import { useState } from "react";
 import "./CardsBooks.css"
 import { CiShoppingCart } from "react-icons/ci";
 
 const CardBooks = (props) => {
     return (
         <div class="card-book">
-            <img src={props.src} className="img-card-book"/>
             <div class="card-title">{props.title}</div>
             <div class="card-subtitle">{props.subtitle}</div>
             <div class="card-footer">
